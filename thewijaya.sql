@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 09, 2025 at 11:02 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Jan 09, 2025 at 11:01 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,9 +33,9 @@ CREATE TABLE `booking` (
   `customer_id` int(11) NOT NULL,
   `check_in_date` date NOT NULL,
   `check_out_date` date NOT NULL,
-  `total_price` int(11) NOT NULL,
   `is_order_food` int(11) NOT NULL DEFAULT 0,
-  `food_id` int(11) DEFAULT NULL
+  `order_id` int(11) DEFAULT NULL,
+  `total_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -51,6 +51,14 @@ CREATE TABLE `customer` (
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `customer_name`, `customer_email`, `password`) VALUES
+(1, 'Irfan Musthofa', 'irfan@gmail.com', '6c7ad97206317d52d3c62060e12988a7'),
+(2, 'Mattheuw Suciadi', 'mattheuw@gmail.com', 'eb00d1363bed4110eb4de4888b0ad83f');
+
 -- --------------------------------------------------------
 
 --
@@ -60,8 +68,8 @@ CREATE TABLE `customer` (
 CREATE TABLE `payment` (
   `id` int(11) NOT NULL,
   `booking_id` int(11) NOT NULL,
-  `payment_method` varchar(255) DEFAULT NULL,
-  `amount` int(11) DEFAULT NULL
+  `payment_method` varchar(255) NOT NULL,
+  `amount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -74,9 +82,24 @@ CREATE TABLE `room` (
   `id` int(11) NOT NULL,
   `room_number` int(11) NOT NULL,
   `room_type` varchar(255) NOT NULL,
-  `room_type_slug` varchar(255) NOT NULL,
   `price_per_night` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`id`, `room_number`, `room_type`, `price_per_night`) VALUES
+(1, 101, 'Double Deluxe', 1000000),
+(2, 102, 'Twin Deluxe', 1100000),
+(3, 103, 'Superior Deluxe', 1500000),
+(4, 104, 'Business Deluxe', 1750000),
+(5, 105, 'Fine Superior', 2000000),
+(6, 106, 'Supreme Superior', 5000000),
+(7, 107, 'Presidential Suite', 7500000),
+(9, 108, 'Master Suite', 8000000),
+(10, 109, 'Wonderful Supreme', 9000000),
+(11, 110, 'Heaven Ecstasy', 10000000);
 
 --
 -- Indexes for dumped tables
@@ -123,7 +146,7 @@ ALTER TABLE `booking`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -135,7 +158,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
