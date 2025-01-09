@@ -1,17 +1,19 @@
-<?php namespace App\Controllers;
+<?php namespace App\Controllers\TheWijayaController;
 
-use App\Models\RoomModel;
-use App\Models\BookingModel;
-use App\Models\PaymentModel;
+use App\Controllers\BaseController;
+
 
 class BookingController extends BaseController
 {
     public function selectDates()
     {
-        return view('select_dates');
-        if (session()->get('num_user') == '') {
-            return redirect()->to('/login');
-            }
+        return view('TheWijaya/select_date');
+
+        //debug
+        // if (session()->get('customer_email') == '') {
+        //     echo 'Anda harus login terlebih dahulu';
+        //     }
+        // echo 'berhasil login';
     }
 
     public function selectRoom()
