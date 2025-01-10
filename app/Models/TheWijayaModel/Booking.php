@@ -18,6 +18,11 @@ class Booking extends Model
 
     public function getBookingCustomer($customerId)
     {
-        return $this->where('customer_id', $customerId)->orderBy('check_in_date', 'ASC')->findAll();
+        return $this
+        ->select('booking.*, room.room_number, room.room_type')
+        ->join('room', 'room.id = booking.room_id') // inner join
+        ->where('booking.customer_id', $customerId)
+        ->orderBy('booking.check_in_date', 'ASC')
+        ->findAll();    
     }
 }

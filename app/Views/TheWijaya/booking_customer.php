@@ -47,14 +47,27 @@
             <?php else: ?>
                 <?php foreach ($bookings as $booking): ?>
                     <div class="booking-card">
-                        <h2 class="text-xl font-bold text-navy-700">Room ID: <?= htmlspecialchars($booking['room_id']) ?></h2>
-                        <p class="text-m text-bold text-pink-700">Check-in: <?= htmlspecialchars($booking['check_in_date']) ?></p>
-                        <p class="text-m text-bold text-pink-700">Check-out: <?= htmlspecialchars($booking['check_out_date']) ?></p>
-                        <p class="text-sm text-gray-700">Total Price: IDR <?= number_format($booking['total_price'], 0, ',', '.') ?></p>
-                        <p class="text-sm <?= $booking['paid'] ? 'text-green-500' : 'text-red-500' ?>">
-                            Status: <?= $booking['paid'] ? 'Paid' : 'Unpaid' ?>
-                        </p>
-                    </div>
+    <!-- Ganti "Room ID" menjadi "Room Number" misalnya -->
+    <h2 class="text-xl font-bold text-navy-700">
+        Room Number: <?= htmlspecialchars($booking['room_number']) ?>
+    </h2>
+    <p class="text-m text-bold text-blue-700">
+        Room Type: <?= htmlspecialchars($booking['room_type']) ?>
+    </p>
+    <p class="text-m text-bold text-pink-700">
+        Check-in: <?= htmlspecialchars($booking['check_in_date']) ?>
+    </p>
+    <p class="text-m text-bold text-pink-700">
+        Check-out: <?= htmlspecialchars($booking['check_out_date']) ?>
+    </p>
+    <p class="text-sm text-gray-700">
+        Total Price: IDR <?= number_format($booking['total_price'], 0, ',', '.') ?>
+    </p>
+    <p class="text-sm <?= $booking['paid'] ? 'text-green-500' : 'text-red-500' ?>">
+        Status: <?= $booking['paid'] ? 'Paid' : 'Unpaid' ?>
+    </p>
+</div>
+
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
