@@ -83,9 +83,9 @@
           required
         >
           <option value="">-- Select Method --</option>
-          <option value="Credit Card">Credit Card</option>
-          <option value="Bank Transfer">Bank Transfer</option>
-          <option value="E-Wallet">E-Wallet</option>
+          <option value="Credit Card">QRIS</option>
+          <option value="Bank Transfer">GoPay</option>
+          <option value="E-Wallet">Debit/Credit</option>
         </select>
       </div>
 
