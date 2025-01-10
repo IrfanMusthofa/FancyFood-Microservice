@@ -12,7 +12,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('/images/wijaya1.png') no-repeat center center/cover;
+      background: url('<?= base_url('images/wijaya1.png') ?>') no-repeat center center/cover;
       filter: blur(8px);
       z-index: -1;
     }

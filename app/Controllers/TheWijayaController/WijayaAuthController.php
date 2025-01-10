@@ -18,7 +18,7 @@ class WijayaAuthController extends BaseController
  
         if ($user) {
             session()->set('customer_email', $user['customer_email']);
-            session()->set('id', $user['id']);
+            session()->set('id', value: $user['id']);
             return redirect()->to('/thewijaya/dashboard');
         } else {
             session()->setFlashdata('errors', ['Email atau password salah']);

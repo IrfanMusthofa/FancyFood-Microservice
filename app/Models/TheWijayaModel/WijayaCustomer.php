@@ -27,7 +27,7 @@ class WijayaCustomer extends Model
         return $this->where('customer_email', $email)
                     ->where('password', $password)
                     ->first();
-    }
+    } 
 
     /**
      * Mengambil data user.

@@ -18,10 +18,11 @@ class SanchayaAuthController extends BaseController
  
         if ($user) {
             session()->set('customer_email', $user['customer_email']);
-            return redirect()->to('/thewijaya/booking/selectDates');
+            session()->set('id', value: $user['id']);
+            return redirect()->to('/sanchayataste/dashboard');
         } else {
             session()->setFlashdata('errors', ['Email atau password salah']);
-            return redirect()->to('/');
+            return redirect()->to('/sanchayataste/error_login');
         }
     }
     public function logout_action()
@@ -41,5 +42,18 @@ class SanchayaAuthController extends BaseController
         $model = new SanchayaCustomer();
         $user = $model->getUser();
         return $this->response->setJSON($user);
+    }
+
+    public function error_login()
+    {
+        return view('SanchayaTaste/error_login');
+    }
+
+    public function dashboard()
+    {
+        if (session()->get('customer_email') == '') {
+            return redirect()->to('/SanchayaTaste/error_login');
+        }
+        return view('SanchayaTaste/dashboard');
     }
 }
