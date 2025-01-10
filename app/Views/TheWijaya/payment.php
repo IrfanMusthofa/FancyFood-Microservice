@@ -85,7 +85,7 @@
           <option value="">-- Select Method --</option>
           <option value="Credit Card">QRIS</option>
           <option value="Bank Transfer">GoPay</option>
-          <option value="E-Wallet">Debit/Credit</option>
+          <option value="E-Wallet">Debit and Credit</option>
         </select>
       </div>
 
