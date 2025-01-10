@@ -23,7 +23,7 @@
     .background-sanchaya {
       position: absolute;
       inset: 0; /* set top, right, bottom, left = 0 */
-      background: url("<?= base_url() ?>images/sanchaya1.png") no-repeat center center / cover;
+      background: url("<?= base_url('images/sanchaya1.png') ?>") no-repeat center center / cover;
       /* filter: blur(8px);    <-- aktifkan jika ingin blur */
       z-index: -1;
     }
@@ -31,7 +31,7 @@
     .background-wijaya {
       position: absolute;
       inset: 0;
-      background: url("<?= base_url() ?>images/wijaya1.png") no-repeat center center / cover;
+      background: url("<?= base_url('images/wijaya1.png') ?>") no-repeat center center / cover;
       /* filter: blur(8px); */
       z-index: -1;
     }
