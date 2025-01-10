@@ -2,26 +2,26 @@
 
 use App\Controllers\BaseController;
 use App\Models\TheWijayaModel\Booking;
+use App\Models\TheWijayaModel\Room;
 
 class BookingController extends BaseController
 {
-    public function selectDates()
+    public function selectBook()
     {
+        // Pastikan customer sudah login
         if (session()->get('customer_email') == '') {
-            echo 'Anda harus login terlebih dahulu';
+            // Jika belum login, arahkan untuk login
             return redirect()->to('/thewijaya/error_login');
         }
-        return view('TheWijaya/select_date');
-    }
 
-    public function selectRoom()
-    {
-        $checkInDate = $this->request->getPost('check_in_date');
-        $checkOutDate = $this->request->getPost('check_out_date');
+        // Ambil semua data room
+        $roomModel = new Room();
+        $allRooms  = $roomModel->getRoom(); // sudah diurutkan ascending by price_per_night
 
-        return view('select_room', [
-            'checkInDate' => $checkInDate,
-            'checkOutDate' => $checkOutDate
+        // Muat view select_book
+        // Mengirim data room agar bisa ditampilkan di dropdown/list
+        return view('TheWijaya/select_book', [
+            'rooms' => $allRooms
         ]);
     }
 
@@ -36,8 +36,9 @@ class BookingController extends BaseController
 
     public function getBookingCustomer() 
     {
-        $customerId = $this->request->getPost('id');
-        print_r($this->request->getPost('id'));
+        $json = $this->request->getJSON();
+        $customerId = $json->id ?? null;
+      
         echo $customerId;
         echo 'melewati getPost(id)';
         if (!$customerId) {
@@ -64,77 +65,40 @@ class BookingController extends BaseController
         ])->setStatusCode(200);
     }
 
-
-
-    public function paymentPage()
+    public function goToPayment()
     {
-        $roomId = $this->request->getPost('room_id');
-        // $roomType = $this->request->getPost('room_type');
-        $checkInDate = $this->request->getPost('check_in_date');
+        // Pastikan customer sudah login, atau handle sesuai kebutuhan
+        if (!session()->get('id')) {
+            return redirect()->to('/thewijaya/error_login');
+        }
+    
+        // Ambil data dari form
+        $roomId       = $this->request->getPost('room_id');
+        $checkInDate  = $this->request->getPost('check_in_date');
         $checkOutDate = $this->request->getPost('check_out_date');
-        $totalPrice = $this->request->getPost('total_price');
-
-        return view('payment_page', [
-            'roomId' => $roomId,
-            // 'roomType' => $roomType,
-            'checkInDate' => $checkInDate,
-            'checkOutDate' => $checkOutDate,
-            'totalPrice' => $totalPrice,
-        ]);
-    }
-
-    public function processPayment()
-    {
-        $bookingModel = new Booking();
-        $paymentModel = new PaymentModel();
-
-        // Insert booking
-        $bookingData = [
-            'room_id' => $this->request->getPost('room_id'),
-            // 'room_type' => $this->request->getPost('room_type'),
-            'customer_name' => $this->request->getPost('customer_name'),
-            'customer_email' => $this->request->getPost('customer_email'),
-            'check_in_date' => $this->request->getPost('check_in_date'),
-            'check_out_date' => $this->request->getPost('check_out_date'),
-            'total_price' => $this->request->getPost('total_price'),
-        ];
-        $bookingId = $bookingModel->insert($bookingData);
-
-        // Insert payment
-        $paymentData = [
-            'booking_id' => $bookingId,
-            'payment_method' => $this->request->getPost('payment_method'),
-            'amount' => $this->request->getPost('total_price'),
-        ];
-        $paymentModel->insert($paymentData);
-
-        return view('payment_success');
-    }
-
-
-
-    public function confirmBooking()
-    {
-        $bookingModel = new \App\Models\BookingModel();
-
+        $totalPrice   = $this->request->getPost('total_price');
+    
+        // Dalam DB, kita ingin menyimpan total_price sebagai integer atau numeric
+        // Format di form adalah misal "1.500.000" => kita buang dulu titiknya
+        $cleanTotalPrice = str_replace('.', '', $totalPrice); // "1500000"
+    
+        // Siapkan data untuk dimasukkan ke tabel booking
         $data = [
-            'customer_name' => $this->request->getPost('customer_name'),
-            'customer_email' => $this->request->getPost('customer_email'),
-            'check_in_date' => $this->request->getPost('check_in_date'),
-            'check_out_date' => $this->request->getPost('check_out_date'),
-            'room_id' => $this->request->getPost('room_id'),
-            'total_price' => $this->calculateTotalPrice(
-                $this->request->getPost('room_id'),
-                $this->request->getPost('check_in_date'),
-                $this->request->getPost('check_out_date')
-            ),
-            'is_order_food' => $this->request->getPost('is_order_food') ?? 0,
-            'room_food_id' => $this->request->getPost('room_food_id') ?? null,
+            'room_id'        => $roomId,
+            'customer_id'    => session()->get('id'), // asumsikan id customer disimpan di session
+            'check_in_date'  => $checkInDate,
+            'check_out_date' => $checkOutDate,
+            'total_price'    => $cleanTotalPrice,
+            'paid'           => 0,  // default 0, nanti bisa di-update jadi 1 setelah dibayar
         ];
-
-        $bookingModel->insert($data);
-
-        return redirect()->to('/paymentPage');
+    
+        // Insert data ke tabel booking
+        $bookingModel = new Booking();
+        $newBookingId = $bookingModel->insert($data);
+    
+        // Redirect ke halaman /thewijaya/payment
+        return redirect()->to('/thewijaya/payment/' . $newBookingId);
     }
+
 
 }

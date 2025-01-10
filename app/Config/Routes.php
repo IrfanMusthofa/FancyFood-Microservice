@@ -21,15 +21,24 @@ $routes->get('/thewijaya/error_login', 'TheWijayaController\WijayaAuthController
 $routes->get('/thewijaya/logout', 'TheWijayaController\WijayaAuthController::logout_action');
 $routes->get('/thewijaya/dashboard', 'TheWijayaController\WijayaAuthController::dashboard');
 
-// Booking
-$routes->get('/thewijaya/booking/selectdates', 'TheWijayaController\BookingController::selectDates');
-$routes->post('/thewijaya/booking/selectroom', 'TheWijayaController\BookingController::selectRoom');
-$routes->get('/thewijaya/booking/viewbookingcustomer', 'TheWijayaController\BookingController::viewBookingCustomer');
-$routes->post('/thewijaya/booking/getbookingcustomer', 'TheWijayaController\BookingController::getBookingCustomer'); // API getBookingCustomer
-
 // Rooms
 $routes->get('/thewijaya/room/viewroom', 'TheWijayaController\RoomController::viewRoom');
 $routes->get('/thewijaya/room/getroom', 'TheWijayaController\RoomController::getRoom'); // API getAllRooms
+
+// Booking
+$routes->get('/thewijaya/booking/selectbook', 'TheWijayaController\BookingController::selectBook');
+$routes->post('/thewijaya/booking/selectroom', 'TheWijayaController\BookingController::selectRoom');
+$routes->get('/thewijaya/booking/viewbookingcustomer', 'TheWijayaController\BookingController::viewBookingCustomer');
+$routes->post('/thewijaya/booking/getbookingcustomer', 'TheWijayaController\BookingController::getBookingCustomer'); // API getBookingCustomer
+$routes->post('/thewijaya/booking/gotopayment', 'TheWijayaController\BookingController::goToPayment');
+
+// Payment
+$routes->get('/thewijaya/payment', 'TheWijayaController\PaymentController::index');
+$routes->get('/thewijaya/payment/(:num)', 'TheWijayaController\PaymentController::index/$1');
+$routes->post('/thewijaya/payment/processPayment', 'TheWijayaController\PaymentController::processPayment');
+
+
+
 
 
 

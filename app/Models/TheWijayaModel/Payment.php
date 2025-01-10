@@ -1,12 +1,12 @@
 <?php 
 
-namespace App\Models;
+namespace App\Models\TheWijayaModel;
 
 use CodeIgniter\Model;
 
-class PaymentModel extends Model
+class Payment extends Model
 {
-    protected $table = 'payments';
+    protected $table = 'payment';
     protected $primaryKey = 'id';
     protected $allowedFields = ['booking_id', 'payment_method', 'amount'];
 }
