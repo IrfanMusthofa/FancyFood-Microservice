@@ -50,14 +50,14 @@
     <div class="background"></div>
     <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
         <h1 class="text-2xl font-semibold text-navy-700 mb-6 text-center">Login to Sanchaya Taste</h1>
-        <form action="/sanchaya/login" method="POST">
+        <form action="/sanchayataste/login" method="POST">
             <div class="mb-4">
-                <label class="block text-sm font-medium text-red-900" for="customer_email">Email:</label>
+                <label class="block text-sm font-medium " for="customer_email">Email:</label>
                 <input id="customer_email" class="input-field" type="email" name="customer_email" required>
             </div>
 
             <div class="mb-6">
-                <label class="block text-sm font-medium text-red-900" for="password">Password:</label>
+                <label class="block text-sm font-medium " for="password">Password:</label>
                 <input id="password" class="input-field" type="password" name="password" required>
             </div>
 

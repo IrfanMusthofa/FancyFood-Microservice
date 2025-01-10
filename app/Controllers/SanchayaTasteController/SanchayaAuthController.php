@@ -52,7 +52,7 @@ class SanchayaAuthController extends BaseController
     public function dashboard()
     {
         if (session()->get('customer_email') == '') {
-            return redirect()->to('/SanchayaTaste/error_login');
+            return redirect()->to('/sanchayataste/error_login');
         }
         return view('SanchayaTaste/dashboard');
     }

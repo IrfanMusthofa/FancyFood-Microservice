@@ -39,9 +39,19 @@ $routes->post('/thewijaya/payment/processPayment', 'TheWijayaController\PaymentC
 
 
 // ===== Route for Sanchaya Taste =====
+
+// Login, Logout, and Dashboard
 $routes->get('/sanchayataste', 'SanchayaTasteController\SanchayaAuthController::index');
 $routes->post('/sanchayataste/login', 'SanchayaTasteController\SanchayaAuthController::login_action');
+$routes->get('/sanchayataste/error_login', 'SanchayaTasteController\SanchayaAuthController::error_login');
 $routes->get('/sanchayataste/logout', 'SanchayaTasteController\SanchayaAuthController::logout_action');
-
 $routes->get('/sanchayataste/getuser', 'SanchayaTasteController\SanchayaAuthController::getUser');
-$routes->get('/sacnhayataste/dashboard', 'TheWijayaController\SanchayaAuthController::dashboard');
+$routes->get('/sanchayataste/dashboard', 'SanchayaTasteController\SanchayaAuthController::dashboard');
+
+// Menu
+$routes->get('/sanchayataste/viewmenu', 'SanchayaTasteController\MenuController::viewMenu');
+$routes->get('/sanchayataste/menu/getmenu', 'SanchayaTasteController\MenuController::getMenu'); // API getMenu
+
+// Order
+$routes->get('sanchayataste/order/vieworder', 'SanchayaTasteController\OrderController::viewOrder');
+$routes->post('sanchayataste/order/getorder', 'SanchayaTasteController\OrderController::getOrder'); // API getOrder
