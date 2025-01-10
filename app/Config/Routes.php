@@ -24,6 +24,8 @@ $routes->get('/thewijaya/dashboard', 'TheWijayaController\WijayaAuthController::
 // Booking
 $routes->get('/thewijaya/booking/selectdates', 'TheWijayaController\BookingController::selectDates');
 $routes->post('/thewijaya/booking/selectroom', 'TheWijayaController\BookingController::selectRoom');
+$routes->get('/thewijaya/booking/viewbookingcustomer', 'TheWijayaController\BookingController::viewBookingCustomer');
+$routes->post('/thewijaya/booking/getbookingcustomer', 'TheWijayaController\BookingController::getBookingCustomer'); // API getBookingCustomer
 
 // Rooms
 $routes->get('/thewijaya/room/viewroom', 'TheWijayaController\RoomController::viewRoom');

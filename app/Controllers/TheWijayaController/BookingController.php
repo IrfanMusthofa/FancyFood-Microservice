@@ -25,6 +25,47 @@ class BookingController extends BaseController
         ]);
     }
 
+    public function viewBookingCustomer() 
+    {
+        $customerId = session()->get('id');
+        $bookingModel = new Booking();
+        $bookings = $bookingModel->getBookingCustomer($customerId);
+
+        return view('TheWijaya/booking_customer', ['bookings' => $bookings]);
+    }
+
+    public function getBookingCustomer() 
+    {
+        $customerId = $this->request->getPost('id');
+        print_r($this->request->getPost('id'));
+        echo $customerId;
+        echo 'melewati getPost(id)';
+        if (!$customerId) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Customer ID is required.'
+            ])->setStatusCode(400);
+        }
+    
+        $bookingModel = new Booking();
+        $bookings = $bookingModel->getBookingCustomer($customerId);
+    
+        if (empty($bookings)) {
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => 'No bookings found for this customer.',
+                'data' => []
+            ])->setStatusCode(200);
+        }
+    
+        return $this->response->setJSON([
+            'status' => 'success',
+            'data' => $bookings
+        ])->setStatusCode(200);
+    }
+
+
+
     public function paymentPage()
     {
         $roomId = $this->request->getPost('room_id');
@@ -70,13 +111,7 @@ class BookingController extends BaseController
         return view('payment_success');
     }
 
-    public function bookingHistory()
-    {
-        $bookingModel = new Booking();
-        $bookings = $bookingModel->findAll();
 
-        return view('booking_history', ['bookings' => $bookings]);
-    }
 
     public function confirmBooking()
     {

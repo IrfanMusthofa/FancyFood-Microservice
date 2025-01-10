@@ -49,7 +49,7 @@
         <h1 class="text-2xl font-semibold text-navy-700 mb-6">Welcome to The Wijaya</h1>
 
         <div class="mb-4">
-            <button onclick="location.href='/thewijaya/booking/viewbooking'" class="w-full py-2 bg-blue-300 rounded-lg mb-4">View Bookings</button>
+            <button onclick="location.href='/thewijaya/booking/viewbookingcustomer'" class="w-full py-2 bg-blue-300 rounded-lg mb-4">View Bookings</button>
             <button onclick="location.href='/thewijaya/room/viewroom'" class="w-full py-2 bg-blue-300 rounded-lg mb-4">View Rooms</button>
             <button onclick="location.href='/thewijaya/booking/selectdates'" class="w-full py-3 cta-button rounded-lg">Book your stay!</button>
         </div>

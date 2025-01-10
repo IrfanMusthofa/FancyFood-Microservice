@@ -6,7 +6,18 @@ use CodeIgniter\Model;
 
 class Booking extends Model
 {
-    protected $table = 'bookings';
+    protected $table = 'booking';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['room_id', 'room_type', 'customer_name', 'customer_email', 'check_in_date', 'check_out_date', 'total_price', 'is_order_food', 'room_food_id'];
+    protected $allowedFields = ['room_id', 'customer_id', 'check_in_date', 'check_out_date', 'is_order_food', 'order_id', 'total_price', 'paid'];
+
+
+    public function getBooking()
+    {
+        return $this->orderBy('price_per_night', 'ASC')->findAll();
+    }
+
+    public function getBookingCustomer($customerId)
+    {
+        return $this->where('customer_id', $customerId)->orderBy('check_in_date', 'ASC')->findAll();
+    }
 }

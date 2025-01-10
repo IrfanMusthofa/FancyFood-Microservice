@@ -321,3 +321,140 @@ DEBUG - 2025-01-10 06:50:52 --> Session: Class initialized using 'CodeIgniter\Se
 DEBUG - 2025-01-10 06:50:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2025-01-10 06:51:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2025-01-10 06:51:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:11:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:11:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:11:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:11:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:23:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:23:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-10 07:23:35 --> mysqli_sql_exception: Table 'thewijaya.bookings' doesn't exist in C:\Users\Irfan PC\Desktop\SanchayaTaste-TheWijaya-Microservice\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\Users\Irfan PC\Desktop\SanchayaTaste-TheWijaya-Microservice\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\Users\Irfan PC\Desktop\SanchayaTaste-TheWijaya-Microservice\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\Users\Irfan PC\Desktop\SanchayaTaste-TheWijaya-Microservice\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\Users\Irfan PC\Desktop\SanchayaTaste-TheWijaya-Microservice\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\Users\Irfan PC\Desktop\SanchayaTaste-TheWijaya-Microservice\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\Users\Irfan PC\Desktop\SanchayaTaste-TheWijaya-Microservice\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\Users\Irfan PC\Desktop\SanchayaTaste-TheWijaya-Microservice\app\Models\TheWijayaModel\Booking.php(21): CodeIgniter\BaseModel->findAll()
+#7 C:\Users\Irfan PC\Desktop\SanchayaTaste-TheWijaya-Microservice\app\Controllers\TheWijayaController\BookingController.php(77): App\Models\TheWijayaModel\Booking->getBookingCustomer(NULL)
+#8 C:\Users\Irfan PC\Desktop\SanchayaTaste-TheWijaya-Microservice\system\CodeIgniter.php(933): App\Controllers\TheWijayaController\BookingController->viewBookingCustomer()
+#9 C:\Users\Irfan PC\Desktop\SanchayaTaste-TheWijaya-Microservice\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TheWijayaController\BookingController))
+#10 C:\Users\Irfan PC\Desktop\SanchayaTaste-TheWijaya-Microservice\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\Users\Irfan PC\Desktop\SanchayaTaste-TheWijaya-Microservice\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\Users\Irfan PC\Desktop\SanchayaTaste-TheWijaya-Microservice\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\Users\Irfan PC\Desktop\SanchayaTaste-TheWijaya-Microservice\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\Users\Irfan PC\Desktop\SanchayaTaste-TheWijaya-Microservice\system\rewrite.php(44): require_once('C:\\Users\\Irfan ...')
+#15 {main}
+CRITICAL - 2025-01-10 07:23:35 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'thewijaya.bookings' doesn't exist
+[Method: GET, Route: thewijaya/booking/viewbookingcustomer]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `bookings`
+WHERE `customer_id` IS NULL
+ORDER BY `check_in_date` ASC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\TheWijayaModel\Booking.php(21): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\TheWijayaController\BookingController.php(77): App\Models\TheWijayaModel\Booking->getBookingCustomer(null)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TheWijayaController\BookingController->viewBookingCustomer()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TheWijayaController\BookingController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Irfan PC\\Desktop\\SanchayaTaste-TheWijaya-Microservice\\public\\index.php')
+CRITICAL - 2025-01-10 07:23:35 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'thewijaya.bookings' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `bookings`
+WHERE `customer_id` IS NULL
+ORDER BY `check_in_date` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `bookings`
+WHERE `customer_id` IS NULL
+ORDER BY `check_in_date` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `bookings`
+WHERE `customer_id` IS NULL
+ORDER BY `check_in_date` ASC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\TheWijayaModel\Booking.php(21): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\TheWijayaController\BookingController.php(77): App\Models\TheWijayaModel\Booking->getBookingCustomer(null)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TheWijayaController\BookingController->viewBookingCustomer()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TheWijayaController\BookingController))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Irfan PC\\Desktop\\SanchayaTaste-TheWijaya-Microservice\\public\\index.php')
+CRITICAL - 2025-01-10 07:23:35 --> [Caused by] mysqli_sql_exception: Table 'thewijaya.bookings' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *
+FROM `bookings`
+WHERE `customer_id` IS NULL
+ORDER BY `check_in_date` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `bookings`
+WHERE `customer_id` IS NULL
+ORDER BY `check_in_date` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `bookings`
+WHERE `customer_id` IS NULL
+ORDER BY `check_in_date` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `bookings`
+WHERE `customer_id` IS NULL
+ORDER BY `check_in_date` ASC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\TheWijayaModel\Booking.php(21): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\TheWijayaController\BookingController.php(77): App\Models\TheWijayaModel\Booking->getBookingCustomer(null)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TheWijayaController\BookingController->viewBookingCustomer()
+10 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TheWijayaController\BookingController))
+11 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Irfan PC\\Desktop\\SanchayaTaste-TheWijaya-Microservice\\public\\index.php')
+DEBUG - 2025-01-10 07:23:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 07:23:42 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "TherWijaya/booking_customer.php"
+[Method: GET, Route: thewijaya/booking/viewbookingcustomer]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('TherWijaya/booking_customer.php')
+ 2 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('TherWijaya/booking_customer', [], true)
+ 3 APPPATH\Controllers\TheWijayaController\BookingController.php(79): view('TherWijaya/booking_customer', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TheWijayaController\BookingController->viewBookingCustomer()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TheWijayaController\BookingController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Irfan PC\\Desktop\\SanchayaTaste-TheWijaya-Microservice\\public\\index.php')
+DEBUG - 2025-01-10 07:23:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-10 07:23:44 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "TherWijaya/booking_customer.php"
+[Method: GET, Route: thewijaya/booking/viewbookingcustomer]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('TherWijaya/booking_customer.php')
+ 2 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('TherWijaya/booking_customer', [], true)
+ 3 APPPATH\Controllers\TheWijayaController\BookingController.php(79): view('TherWijaya/booking_customer', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\TheWijayaController\BookingController->viewBookingCustomer()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TheWijayaController\BookingController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Irfan PC\\Desktop\\SanchayaTaste-TheWijaya-Microservice\\public\\index.php')
+DEBUG - 2025-01-10 07:24:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:24:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:25:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:25:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:26:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:26:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:26:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:27:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:43:19 --> POST data: null
+DEBUG - 2025-01-10 07:57:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:57:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:57:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-10 07:57:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
