@@ -1,19 +1,17 @@
 <?php namespace App\Controllers\TheWijayaController;
 
 use App\Controllers\BaseController;
-
+use App\Models\TheWijayaModel\Booking;
 
 class BookingController extends BaseController
 {
     public function selectDates()
     {
+        if (session()->get('customer_email') == '') {
+            echo 'Anda harus login terlebih dahulu';
+            return redirect()->to('/thewijaya/error_login');
+        }
         return view('TheWijaya/select_date');
-
-        //debug
-        // if (session()->get('customer_email') == '') {
-        //     echo 'Anda harus login terlebih dahulu';
-        //     }
-        // echo 'berhasil login';
     }
 
     public function selectRoom()
@@ -21,11 +19,7 @@ class BookingController extends BaseController
         $checkInDate = $this->request->getPost('check_in_date');
         $checkOutDate = $this->request->getPost('check_out_date');
 
-        $roomModel = new RoomModel();
-        $rooms = $roomModel->getAllRooms();
-
         return view('select_room', [
-            'rooms' => $rooms,
             'checkInDate' => $checkInDate,
             'checkOutDate' => $checkOutDate
         ]);
@@ -50,7 +44,7 @@ class BookingController extends BaseController
 
     public function processPayment()
     {
-        $bookingModel = new BookingModel();
+        $bookingModel = new Booking();
         $paymentModel = new PaymentModel();
 
         // Insert booking
@@ -78,7 +72,7 @@ class BookingController extends BaseController
 
     public function bookingHistory()
     {
-        $bookingModel = new BookingModel();
+        $bookingModel = new Booking();
         $bookings = $bookingModel->findAll();
 
         return view('booking_history', ['bookings' => $bookings]);

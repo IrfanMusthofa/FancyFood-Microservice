@@ -1,10 +1,10 @@
 <?php 
 
-namespace App\Models;
+namespace App\Models\TheWijayaModel;
 
 use CodeIgniter\Model;
 
-class BookingModel extends Model
+class Booking extends Model
 {
     protected $table = 'bookings';
     protected $primaryKey = 'id';

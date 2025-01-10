@@ -11,14 +11,28 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 
 
-// Route for The Wijaya\
+// ===== Route for The Wijaya =====
+
+// Login, Logout, and Dashboard
+$routes->get('thewijaya/getuser', 'TheWijayaController\WijayaAuthController::getUser'); // API getUser
 $routes->get('/thewijaya', 'TheWijayaController\WijayaAuthController::index');
 $routes->post('/thewijaya/login', 'TheWijayaController\WijayaAuthController::login_action');
+$routes->get('/thewijaya/error_login', 'TheWijayaController\WijayaAuthController::error_login');
 $routes->get('/thewijaya/logout', 'TheWijayaController\WijayaAuthController::logout_action');
+$routes->get('/thewijaya/dashboard', 'TheWijayaController\WijayaAuthController::dashboard');
 
-$routes->get('thewijaya/getuser', 'TheWijayaController\WijayaAuthController::getUser');
+// Booking
+$routes->get('/thewijaya/booking/selectdates', 'TheWijayaController\BookingController::selectDates');
+$routes->post('/thewijaya/booking/selectroom', 'TheWijayaController\BookingController::selectRoom');
 
-$routes->get('/thewijaya/booking/selectDates', 'TheWijayaController\BookingController::selectDates');
+// Rooms
+$routes->get('/thewijaya/room/viewroom', 'TheWijayaController\RoomController::viewRoom');
+$routes->get('/thewijaya/room/getroom', 'TheWijayaController\RoomController::getRoom'); // API getAllRooms
+
+
+
+
+
 // $routes->get('/BookingController/selectDates', 'BookingController::selectDates', ['filter' => 'auth']);
 // $routes->post('/BookingController/selectRoom', 'BookingController::selectRoom');
 // $routes->post('/BookingController/paymentPage', 'BookingController::paymentPage');

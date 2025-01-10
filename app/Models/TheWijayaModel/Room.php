@@ -1,16 +1,17 @@
 <?php 
-namespace App\Models;
+namespace App\Models\TheWijayaModel;
 
 use CodeIgniter\Model;
 
-class RoomModel extends Model
+class Room extends Model
 {
-    protected $table = 'rooms';
+    protected $table = 'room';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['room_name', 'room_type', 'price_per_night'];
+    protected $allowedFields = ['room_number', 'room_type', 'price_per_night'];
 
-    public function getAllRooms()
+    public function getRoom()
     {
-        return $this->findAll();
+        return $this->orderBy('price_per_night', 'ASC')->findAll();
     }
+
 }
