@@ -54,6 +54,12 @@
                 </div>
             <?php endforeach; ?>
         </div>
+        <div class="flex justify-center mt-6">
+            <a href="/thewijaya/dashboard" 
+               class="bg-blue-500 text-white font-semibold py-2 px-6 rounded hover:bg-blue-600 transition duration-300">
+                Back to Dashboard
+            </a>
+        </div>
     </div>
 </body>
 </html>

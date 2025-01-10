@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2025 at 11:01 PM
+-- Generation Time: Jan 10, 2025 at 09:33 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,8 +35,16 @@ CREATE TABLE `booking` (
   `check_out_date` date NOT NULL,
   `is_order_food` int(11) NOT NULL DEFAULT 0,
   `order_id` int(11) DEFAULT NULL,
-  `total_price` int(11) NOT NULL
+  `total_price` int(11) NOT NULL,
+  `paid` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`id`, `room_id`, `customer_id`, `check_in_date`, `check_out_date`, `is_order_food`, `order_id`, `total_price`, `paid`) VALUES
+(1, 11, 1, '2025-01-01', '2025-01-02', 0, NULL, 10000000, 1);
 
 -- --------------------------------------------------------
 
@@ -98,8 +106,8 @@ INSERT INTO `room` (`id`, `room_number`, `room_type`, `price_per_night`) VALUES
 (6, 106, 'Supreme Superior', 5000000),
 (7, 107, 'Presidential Suite', 7500000),
 (9, 108, 'Master Suite', 8000000),
-(10, 109, 'Wonderful Supreme', 9000000),
-(11, 110, 'Heaven Ecstasy', 10000000);
+(11, 109, 'Heaven Ecstasy', 10000000),
+(12, 0, 'NO ROOM', 1000);
 
 --
 -- Indexes for dumped tables
@@ -140,7 +148,7 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -158,7 +166,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
