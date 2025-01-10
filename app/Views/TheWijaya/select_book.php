@@ -91,7 +91,7 @@
         required
         class="w-full mt-2 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-500"
       >
-        <option value="">-- Pilih Room --</option>
+        <option value="">-- Select Room --</option>
         <?php if (!empty($rooms)) : ?>
           <?php foreach ($rooms as $room) : ?>
             <?php 

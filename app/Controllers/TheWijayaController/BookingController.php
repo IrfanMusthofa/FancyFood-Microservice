@@ -39,8 +39,6 @@ class BookingController extends BaseController
         $json = $this->request->getJSON();
         $customerId = $json->id ?? null;
       
-        echo $customerId;
-        echo 'melewati getPost(id)';
         if (!$customerId) {
             return $this->response->setJSON([
                 'status' => 'error',

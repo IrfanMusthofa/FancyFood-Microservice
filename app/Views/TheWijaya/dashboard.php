@@ -53,6 +53,10 @@
             <button onclick="location.href='/thewijaya/room/viewroom'" class="w-full py-2 bg-blue-300 rounded-lg mb-4">View Rooms</button>
             <button onclick="location.href='/thewijaya/booking/selectbook'" class="w-full py-3 cta-button rounded-lg">Book your stay!</button>
         </div>
+
+        <div class"m-8">
+            <a href='/thewijaya/logout' class="py-4 hover:text-pink-700">Logout</a>
+        </div>
     </div>
 </body>
 </html>
