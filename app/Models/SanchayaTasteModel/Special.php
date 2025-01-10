@@ -17,4 +17,15 @@ class Special extends Model
     {
         return $this->findAll();
     }
+
+    public function getSpecialWithMenu()
+    {
+        // SELECT special.*, menu.menu_name, menu.menu_price
+        //   FROM special
+        //   JOIN menu ON menu.id = special.menu_id
+        return $this->select('special.*, menu.menu_name, menu.menu_price')
+                    ->join('menu', 'menu.id = special.menu_id')
+                    ->findAll();
+    }
+    
 }

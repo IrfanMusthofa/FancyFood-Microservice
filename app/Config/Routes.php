@@ -30,13 +30,12 @@ $routes->post('/thewijaya/booking/selectroom', 'TheWijayaController\BookingContr
 $routes->get('/thewijaya/booking/viewbookingcustomer', 'TheWijayaController\BookingController::viewBookingCustomer');
 $routes->post('/thewijaya/booking/getbookingcustomer', 'TheWijayaController\BookingController::getBookingCustomer'); // API getBookingCustomer
 $routes->post('/thewijaya/booking/gotopayment', 'TheWijayaController\BookingController::goToPayment');
+$routes->post('/thewijaya/booking/getBookingById', 'TheWijayaController\BookingController::getBookingById'); // API getBookingById
 
 // Payment
 $routes->get('/thewijaya/payment', 'TheWijayaController\PaymentController::index');
 $routes->get('/thewijaya/payment/(:num)', 'TheWijayaController\PaymentController::index/$1');
 $routes->post('/thewijaya/payment/processPayment', 'TheWijayaController\PaymentController::processPayment');
-
-
 
 // ===== Route for Sanchaya Taste =====
 
@@ -61,3 +60,16 @@ $routes->post('sanchayataste/order/createorder', 'SanchayaTasteController\OrderC
 // Special
 $routes->get('sanchayataste/special/viewspecial', 'SanchayaTasteController\SpecialController::viewSpecial');
 $routes->get('sanchayataste/special/getspecial', 'SanchayaTasteController\SpecialController::getSpecial');
+
+
+$routes->get('sanchayataste/special/enterbookingdiscount', 'SanchayaTasteController\SpecialController::enterBookingId');
+$routes->post('sanchayataste/special/processbookingdiscount', 'SanchayaTasteController\SpecialController::processBookingDiscount');
+
+
+
+// // Menampilkan discount secara normal (bawaan)
+// $routes->get('sanchayataste/special/viewspecial', 'SanchayaTasteController\SpecialController::viewSpecial');
+// $routes->get('sanchayataste/special/getspecial', 'SanchayaTasteController\SpecialController::getSpecial');
+
+// // Menampilkan special discount per booking
+// $routes->get('sanchayataste/special/viewdiscount/(:num)', 'SanchayaTasteController\SpecialController::viewSpecialDiscount/$1');

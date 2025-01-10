@@ -98,5 +98,36 @@ class BookingController extends BaseController
         return redirect()->to('/thewijaya/payment/' . $newBookingId);
     }
 
+    public function getBookingById()
+    {
+        // Ambil JSON input
+        log_message('debug', 'Masuk ke getBookingById()');
+        $json = $this->request->getJSON();
+        $bookingId = $json->booking_id ?? null;
+       
+        if (!$bookingId) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Booking ID is required.'
+            ])->setStatusCode(400);
+        }
+        log_message('debug', 'lewat check bookingID');
+        // Ambil data booking dari model
+        $bookingModel = new Booking();
+        $booking = $bookingModel->find($bookingId);
 
+        log_message('debug', 'Selesai memanggil bookingModel->find('.$bookingId.')');
+        
+        if (!$booking) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Booking not found.',
+            ])->setStatusCode(404);
+        }
+
+        return $this->response->setJSON([
+            'status' => 'success',
+            'data' => $booking
+        ])->setStatusCode(200);
+    }
 }

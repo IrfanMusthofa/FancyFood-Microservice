@@ -1,0 +1,1 @@
+__ci_last_regenerate|i:1736540995;customer_email|s:15:"irfan@gmail.com";id|s:1:"1";_ci_previous_url|s:74:"http://localhost:8080/index.php/sanchayataste/special/enterbookingdiscount";error|s:103:"Error calling booking endpoint: 28 : Operation timed out after 30002 milliseconds with 0 bytes received";__ci_vars|a:1:{s:5:"error";s:3:"old";}
