@@ -3,6 +3,7 @@ namespace App\Controllers\SanchayaTasteController;
 
 use App\Controllers\BaseController;
 use App\Models\SanchayaTasteModel\Orderlist;
+use App\Models\SanchayaTasteModel\Menu;
 
 class OrderController extends BaseController
 {
@@ -54,4 +55,68 @@ class OrderController extends BaseController
 
         return $this->response->setJSON($orders)->setStatusCode(200);
     }
+
+    public function orderNow()
+    {
+        // Pastikan customer sudah login
+        $session = session();
+        $customerId = $session->get('id');
+        if (!$customerId) {
+            return redirect()->to('/sanchayataste/error_login');
+        }
+
+        // Ambil data menu (untuk dropdown)
+        $menuModel = new Menu();
+        $menus = $menuModel->findAll(); // atau $menuModel->getMenu();
+
+        return view('SanchayaTaste/order', [
+            'menus' => $menus
+        ]);
+    }
+
+    /**
+     * Memproses form "Order Now" 
+     * dan menambahkan data ke tabel orderlist.
+     */
+    public function createOrder()
+    {
+        // Cek session login
+        $session = session();
+        $customerId = $session->get('id');
+        if (!$customerId) {
+            return redirect()->to('/sanchayataste/error_login');
+        }
+
+        // Ambil input
+        $menuId   = $this->request->getPost('menu_id');
+        $quantity = $this->request->getPost('quantity');
+
+        // Dapatkan harga menu dari DB
+        $menuModel = new Menu();
+        $menuData  = $menuModel->find($menuId);
+        if (!$menuData) {
+            return redirect()->back()->with('error', 'Menu not found.');
+        }
+
+        $menuPrice = $menuData['menu_price'];
+        // Hitung total
+        $totalPrice = $quantity * $menuPrice;
+
+        // Siapkan data untuk insert
+        $data = [
+            'menu_id'     => $menuId,
+            'quantity'    => $quantity,
+            'total_price' => $totalPrice,
+            'order_date'  => date('Y-m-d'),
+            'customer_id' => $customerId
+        ];
+
+        $orderlistModel = new Orderlist();
+        $orderlistModel->insert($data);
+        $session->setFlashdata('success', 'Order created successfully!');
+
+        // Setelah sukses insert, arahkan ke halaman order list
+        return redirect()->to('/sanchayataste/order/vieworder')->with('success', 'Order created successfully!');
+    }
+
 }

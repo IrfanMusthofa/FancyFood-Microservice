@@ -31,6 +31,13 @@
       Your Orders
     </h1>
 
+    <!-- Tampilkan pesan sukses jika ada -->
+    <?php if (session()->getFlashdata('success')): ?>
+      <div class="bg-green-100 text-green-800 p-3 rounded mb-4">
+        <?= session()->getFlashdata('success') ?>
+      </div>
+    <?php endif; ?>
+
     <?php if (!empty($orders)): ?>
       <div class="overflow-x-auto">
         <table class="table-auto w-full border-collapse">

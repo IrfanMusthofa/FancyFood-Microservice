@@ -50,8 +50,10 @@
 
         <div class="mb-4">
             <button onclick="location.href='/sanchayataste/order/vieworder'" class="w-full py-2 bg-red-300 rounded-lg mb-4">View Order</button>
-            <button onclick="location.href='/sanchayataste/viewmenu'" class="w-full py-2 bg-red-300 rounded-lg mb-4">View Menu</button>
+            <button onclick="location.href='/sanchayataste/menu/viewmenu'" class="w-full py-2 bg-red-300 rounded-lg mb-4">View Menu</button>
             <button onclick="location.href='/sanchayataste/order/select_menu'" class="w-full py-3 cta-button rounded-lg">Order Now!</button>
+            <button onclick="location.href='/sanchayataste/special/viewspecial'" class="w-full py-3 cta-button bg-red-600 mt-6 rounded-lg">Special discount!</button>
+
         </div>
 
         <div class"m-8">

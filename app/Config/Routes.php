@@ -49,9 +49,15 @@ $routes->get('/sanchayataste/getuser', 'SanchayaTasteController\SanchayaAuthCont
 $routes->get('/sanchayataste/dashboard', 'SanchayaTasteController\SanchayaAuthController::dashboard');
 
 // Menu
-$routes->get('/sanchayataste/viewmenu', 'SanchayaTasteController\MenuController::viewMenu');
+$routes->get('/sanchayataste/menu/viewmenu', 'SanchayaTasteController\MenuController::viewMenu');
 $routes->get('/sanchayataste/menu/getmenu', 'SanchayaTasteController\MenuController::getMenu'); // API getMenu
 
 // Order
 $routes->get('sanchayataste/order/vieworder', 'SanchayaTasteController\OrderController::viewOrder');
 $routes->post('sanchayataste/order/getorder', 'SanchayaTasteController\OrderController::getOrder'); // API getOrder
+$routes->get('sanchayataste/order/select_menu', 'SanchayaTasteController\OrderController::orderNow');
+$routes->post('sanchayataste/order/createorder', 'SanchayaTasteController\OrderController::createOrder');
+
+// Special
+$routes->get('sanchayataste/special/viewspecial', 'SanchayaTasteController\SpecialController::viewSpecial');
+$routes->get('sanchayataste/special/getspecial', 'SanchayaTasteController\SpecialController::getSpecial');
