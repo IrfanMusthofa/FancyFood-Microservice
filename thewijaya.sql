@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2025 at 09:33 AM
+-- Generation Time: Jan 11, 2025 at 10:03 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,7 +44,12 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`id`, `room_id`, `customer_id`, `check_in_date`, `check_out_date`, `is_order_food`, `order_id`, `total_price`, `paid`) VALUES
-(1, 11, 1, '2025-01-01', '2025-01-02', 0, NULL, 10000000, 1);
+(1, 6, 1, '2025-01-10', '2025-01-14', 0, NULL, 20000000, 1),
+(2, 9, 1, '2025-01-25', '2025-01-28', 0, NULL, 24000000, 0),
+(3, 7, 1, '2025-01-11', '2025-01-17', 0, NULL, 45000000, 1),
+(4, 2, 2, '2025-01-18', '2025-01-22', 0, NULL, 4400000, 1),
+(5, 7, 1, '2025-01-11', '2025-01-16', 0, NULL, 37500000, 1),
+(6, 5, 1, '2025-01-17', '2025-01-25', 0, NULL, 16000000, 1);
 
 -- --------------------------------------------------------
 
@@ -79,6 +84,17 @@ CREATE TABLE `payment` (
   `payment_method` varchar(255) NOT NULL,
   `amount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`id`, `booking_id`, `payment_method`, `amount`) VALUES
+(1, 1, 'Credit Card', 20000000),
+(2, 3, 'Bank Transfer', 45000000),
+(3, 4, 'Credit Card', 4400000),
+(4, 5, 'E-Wallet', 37500000),
+(5, 6, 'E-Wallet', 16000000);
 
 -- --------------------------------------------------------
 
@@ -148,7 +164,7 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -160,7 +176,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `room`

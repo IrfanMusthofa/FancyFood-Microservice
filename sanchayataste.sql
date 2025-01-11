@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2025 at 09:33 AM
+-- Generation Time: Jan 11, 2025 at 10:03 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,21 +40,8 @@ CREATE TABLE `customer` (
 
 INSERT INTO `customer` (`id`, `customer_name`, `customer_email`, `password`) VALUES
 (1, 'Irfan Musthofa', 'irfan@gmail.com', '6c7ad97206317d52d3c62060e12988a7'),
-(2, 'Mattheuw Suciadi', 'mattheuw@gmail.com', 'eb00d1363bed4110eb4de4888b0ad83f');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `detail`
---
-
-CREATE TABLE `detail` (
-  `id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `menu_id` int(11) NOT NULL,
-  `orderlist_id` int(11) NOT NULL,
-  `detail_price` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(2, 'Mattheuw Suciadi', 'mattheuw@gmail.com', 'eb00d1363bed4110eb4de4888b0ad83f'),
+(3, 'Reza Musthofa', 'reza@gmail.com', '9c0069f24f88bf7065ef255398081d14');
 
 -- --------------------------------------------------------
 
@@ -81,8 +68,7 @@ INSERT INTO `menu` (`id`, `menu_name`, `menu_price`) VALUES
 (6, 'Onion Ring', 60000),
 (7, 'Lemon Tea', 50000),
 (8, 'Banana Avjuice', 70000),
-(9, 'Sky Mocktail', 210000),
-(10, 'Virgin Mojito', 190000);
+(9, 'Sky Mocktail', 210000);
 
 -- --------------------------------------------------------
 
@@ -92,10 +78,23 @@ INSERT INTO `menu` (`id`, `menu_name`, `menu_price`) VALUES
 
 CREATE TABLE `orderlist` (
   `id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
   `total_price` int(11) NOT NULL,
   `order_date` date NOT NULL,
   `customer_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orderlist`
+--
+
+INSERT INTO `orderlist` (`id`, `menu_id`, `quantity`, `total_price`, `order_date`, `customer_id`) VALUES
+(1, 1, 1, 5000, '2025-01-12', 1),
+(2, 3, 3, 1350000, '2025-01-10', 1),
+(3, 2, 1, 600000, '2025-01-10', 1),
+(4, 5, 3, 270000, '2025-01-10', 1),
+(5, 9, 3, 630000, '2025-01-11', 1);
 
 -- --------------------------------------------------------
 
@@ -122,8 +121,7 @@ INSERT INTO `special` (`id`, `menu_id`, `special_discount`) VALUES
 (6, 6, 4),
 (7, 7, 2),
 (8, 8, 5),
-(9, 9, 7),
-(10, 10, 4);
+(9, 9, 7);
 
 --
 -- Indexes for dumped tables
@@ -136,14 +134,6 @@ ALTER TABLE `customer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `detail`
---
-ALTER TABLE `detail`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `detail_menu` (`menu_id`),
-  ADD KEY `detail_orderlist` (`orderlist_id`);
-
---
 -- Indexes for table `menu`
 --
 ALTER TABLE `menu`
@@ -154,7 +144,8 @@ ALTER TABLE `menu`
 --
 ALTER TABLE `orderlist`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `orderlist_customer` (`customer_id`);
+  ADD KEY `orderlist_customer` (`customer_id`),
+  ADD KEY `orderlist_menu` (`menu_id`);
 
 --
 -- Indexes for table `special`
@@ -171,13 +162,7 @@ ALTER TABLE `special`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `detail`
---
-ALTER TABLE `detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `menu`
@@ -189,7 +174,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `orderlist`
 --
 ALTER TABLE `orderlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `special`
@@ -202,17 +187,11 @@ ALTER TABLE `special`
 --
 
 --
--- Constraints for table `detail`
---
-ALTER TABLE `detail`
-  ADD CONSTRAINT `detail_menu` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`),
-  ADD CONSTRAINT `detail_orderlist` FOREIGN KEY (`orderlist_id`) REFERENCES `orderlist` (`id`);
-
---
 -- Constraints for table `orderlist`
 --
 ALTER TABLE `orderlist`
-  ADD CONSTRAINT `orderlist_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`);
+  ADD CONSTRAINT `orderlist_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
+  ADD CONSTRAINT `orderlist_menu` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`);
 
 --
 -- Constraints for table `special`
