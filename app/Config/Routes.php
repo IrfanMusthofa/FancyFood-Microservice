@@ -37,6 +37,11 @@ $routes->get('/thewijaya/payment', 'TheWijayaController\PaymentController::index
 $routes->get('/thewijaya/payment/(:num)', 'TheWijayaController\PaymentController::index/$1');
 $routes->post('/thewijaya/payment/processPayment', 'TheWijayaController\PaymentController::processPayment');
 
+// Special
+$routes->get('/thewijaya/special/', 'TheWijayaController\DiscountController::viewDiscount');
+
+
+
 // ===== Route for Sanchaya Taste =====
 
 // Login, Logout, and Dashboard
