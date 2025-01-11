@@ -38,7 +38,7 @@ class SpecialController extends BaseController
     public function getSpecial()
     {
         $specialModel = new Special();
-        $specials = $specialModel->getSpecial();
+        $specials = $specialModel->getSpecialWithMenu();
 
         return $this->response->setJSON($specials);
     }

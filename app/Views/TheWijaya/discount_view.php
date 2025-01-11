@@ -74,7 +74,7 @@
     <?php endif; ?>
 
     <div class="flex justify-center mt-6">
-      <button onclick="location.href='/sanchayataste/dashboard'"
+      <button onclick="location.href='/wijaya/dashboard'"
               class="w-full py-3 rounded-lg">
         Back to Dashboard
       </button>

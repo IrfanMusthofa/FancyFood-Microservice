@@ -35,7 +35,7 @@ class DiscountController extends BaseController
             // - menu_price
             // - special_discount
             // misal: /sanchayataste/special/getspecial
-            $response = $this->client->get('http://localhost:8080/sanchayataste/special/getspecial');
+            $response = $this->client->get('http://irfancy.com/sanchayataste/special/getspecial');
 
             if ($response->getStatusCode() === 200) {
                 $menus = json_decode($response->getBody(), true);
