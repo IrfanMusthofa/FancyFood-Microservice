@@ -52,7 +52,7 @@
             <button onclick="location.href='/thewijaya/booking/viewbookingcustomer'" class="w-full py-2 bg-blue-300 rounded-lg mb-4">View Bookings</button>
             <button onclick="location.href='/thewijaya/room/viewroom'" class="w-full py-2 bg-blue-300 rounded-lg mb-4">View Rooms</button>
             <button onclick="location.href='/thewijaya/booking/selectbook'" class="w-full py-3 cta-button rounded-lg">Book your stay!</button>
-            <button onclick="location.href='/thewijaya/special/'" class="w-full py-3 cta-button rounded-lg">Special discount!</button>
+            <button onclick="location.href='/thewijaya/special/'" class="w-full py-3 mt-4 cta-button rounded-lg">Special discount!</button>
 
         </div>
 

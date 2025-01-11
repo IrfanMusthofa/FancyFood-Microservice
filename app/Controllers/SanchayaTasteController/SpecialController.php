@@ -4,7 +4,6 @@ namespace App\Controllers\SanchayaTasteController;
 use App\Controllers\BaseController;
 use App\Models\SanchayaTasteModel\Special;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 
 
@@ -113,7 +112,7 @@ class SpecialController extends BaseController
         ];
         
         try {
-            $response = $this->client->post('http://irfancy.com/thewijaya/booking/getBookingById', [
+            $response = $this->client->post('http://irfancy.com/thewijaya/booking/getbookingbyid', [
                 
                 'headers' => [
                     'Content-Type' => 'application/json',
