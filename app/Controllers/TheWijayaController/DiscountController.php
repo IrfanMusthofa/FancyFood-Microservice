@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\SanchayaTasteController;
+namespace App\Controllers\TheWijayaController;
 
 use App\Controllers\BaseController;
 use GuzzleHttp\Client;
