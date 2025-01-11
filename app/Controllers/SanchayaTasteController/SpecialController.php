@@ -4,7 +4,9 @@ namespace App\Controllers\SanchayaTasteController;
 use App\Controllers\BaseController;
 use App\Models\SanchayaTasteModel\Special;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
+
 
 class SpecialController extends BaseController
 {
@@ -13,6 +15,12 @@ class SpecialController extends BaseController
      * Menampilkan semua record 'special' dalam view (HTML).
      */
     
+    public function __construct()
+    {
+        $this->client = new Client([
+            'timeout'         => 20,          // Timeout total request
+        ]);
+    }
     public function viewSpecial()
     {
         // Buat instance model
@@ -100,34 +108,28 @@ class SpecialController extends BaseController
             return redirect()->back()->with('error', 'Booking ID cannot be empty!');
         }
 
-        // 1. Panggil endpoint TheWijaya (booking/getBookingById) via HTTP request
-        // Tambahkan konfigurasi timeout, misal 5 detik:
-        $this->client = new Client([
-            'timeout'         => 10,          // Timeout total request
-            'connect_timeout' => 10,
-        ]);
-
-        $endpointUrl = 'http://localhost:8080/thewijaya/booking/getBookingById'; // Route untuk getBookingById
         $postData = [
             'booking_id' => $bookingId,
         ];
         
         try {
-            $response = $this->client->request('POST', $endpointUrl, [
+            $response = $this->client->post('http://irfancy.com/thewijaya/booking/getBookingById', [
                 
                 'headers' => [
                     'Content-Type' => 'application/json',
                 ],
                 'json' => $postData, // Guzzle akan set body JSON & header automatically
             ]);
+
             if ($response->getStatusCode() === 200) {
                 log_message('info', 'Success calling booking endpoint');
                 $result = json_decode($response->getBody(), true);
             } else 
             { log_message('error', 'Error calling booking endpoint: ' . $response->getStatusCode());}
             $result   = json_decode($response->getBody(), true);
-        } catch (\Exception $e) {
+        } catch (GuzzleException $e) {
             // Tangani kesalahan (termasuk timeout)
+            
             return redirect()->back()->with(
                 'error',
                 'Error calling booking endpoint: ' . $e->getMessage()

@@ -4,6 +4,7 @@ use App\Controllers\BaseController;
 use App\Models\TheWijayaModel\Booking;
 use App\Models\TheWijayaModel\Room;
 
+
 class BookingController extends BaseController
 {
     public function selectBook()
@@ -101,7 +102,7 @@ class BookingController extends BaseController
     public function getBookingById()
     {
         // Ambil JSON input
-        log_message('debug', 'Masuk ke getBookingById()');
+        // log_message('debug', 'Masuk ke getBookingById()');
         $json = $this->request->getJSON();
         $bookingId = $json->booking_id ?? null;
        
@@ -111,12 +112,11 @@ class BookingController extends BaseController
                 'message' => 'Booking ID is required.'
             ])->setStatusCode(400);
         }
-        log_message('debug', 'lewat check bookingID');
+        // log_message('debug', 'lewat check bookingID');
         // Ambil data booking dari model
         $bookingModel = new Booking();
         $booking = $bookingModel->find($bookingId);
 
-        log_message('debug', 'Selesai memanggil bookingModel->find('.$bookingId.')');
         
         if (!$booking) {
             return $this->response->setJSON([
@@ -124,6 +124,8 @@ class BookingController extends BaseController
                 'message' => 'Booking not found.',
             ])->setStatusCode(404);
         }
+        // log_message('debug', 'Selesai memanggil bookingModel->find('.$bookingId.')');
+        // log_message('debug', 'booking data ditemukan berdasarkan bookingId');
 
         return $this->response->setJSON([
             'status' => 'success',
