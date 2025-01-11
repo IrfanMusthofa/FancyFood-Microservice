@@ -157,7 +157,7 @@ class SpecialController extends BaseController
         foreach ($specials as $item) {
             $menuPrice       = $item['menu_price'];
             $specialDiscount = $item['special_discount']; // persentase
-            $discountAmount  = ($specialDiscount / 100) * $roomId;
+            $discountAmount  = ($specialDiscount / 100 * $menuPrice);
             $finalPrice      = $menuPrice - $discountAmount;
 
             $specialDiscounts[] = [

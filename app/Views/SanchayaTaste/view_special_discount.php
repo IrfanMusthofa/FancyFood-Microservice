@@ -58,7 +58,7 @@
 
     <div class="flex justify-center mt-6">
       <a href="/sanchayataste/dashboard" 
-         class="bg-red-700 hover:bg-red-800 text-white font-semibold py-2 px-6 rounded">
+         class="bg-red-300 hover:bg-red-800 text-white font-semibold py-2 px-6 rounded">
         Back to Dashboard
       </a>
     </div>
